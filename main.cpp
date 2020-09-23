@@ -509,6 +509,17 @@ void drawskynight()
     glVertex2f(-0.02f, 0.76f);
     glVertex2f(-0.06f, 0.76f);
 	glEnd();
+
+	glBegin(GL_POLYGON);
+    glColor3f(1.0f, 0.6f, .0f);
+	glVertex2f(-0.17f, 0.73f);
+	glVertex2f(-0.24f, 0.68f);
+    glVertex2f(-0.23f, 0.72f);
+    glVertex2f(-0.25f, 0.75f);
+    glVertex2f(-0.23f, 0.77f);
+    glVertex2f(-0.24f, 0.81f);
+    glVertex2f(-0.17f, 0.77f);
+	glEnd();
 	glPopMatrix();
 }
 
@@ -2090,12 +2101,18 @@ if (rainday)
      if (night){
      drawskynight();
      drawbuildingnight();
+      Drawvhiclesnight();
+     drawroadlampnight();
+
+
      drawrain();
      DrawQuad(-1.2,1.2,-1.2,-1.2,1.2,-1.2,1.2,1.2,0,0,0,.3);
      }
      else {
     drawSky();
     drawBuilding();
+    Drawvhiclesnight();
+//drawroadlampnight();
      drawrain();
      DrawQuad(-1.2,1.2,-1.2,-1.2,1.2,-1.2,1.2,1.2,0,0,0,.3);
      }
@@ -2305,17 +2322,17 @@ void handleKeypress(unsigned char key, int x, int y) {
         rainday = true;
 
        // Rain(_rain);
-        sndPlaySound("rain.wav",SND_ASYNC|SND_LOOP);
+        //sndPlaySound("rain.wav",SND_ASYNC|SND_LOOP);
         //sndPlaySound("River.wav",SND_MEMORY|SND_ASYNC);
         break;
 
     case 'e':
         rainday = false;
         if (!night){
-          sndPlaySound("cars.wav",SND_ASYNC|SND_LOOP);
+          //sndPlaySound("cars.wav",SND_ASYNC|SND_LOOP);
         }
 		else {
-             sndPlaySound("night.wav",SND_ASYNC|SND_LOOP);
+             //sndPlaySound("night.wav",SND_ASYNC|SND_LOOP);
 		}
         break;
 
@@ -2325,9 +2342,9 @@ void handleKeypress(unsigned char key, int x, int y) {
         upmoon(0);
         positionsun=0;
          if(!rainday){
-        sndPlaySound("night.wav",SND_ASYNC|SND_LOOP);
+        //sndPlaySound("night.wav",SND_ASYNC|SND_LOOP);
         }else {
-        sndPlaySound("rain.wav",SND_ASYNC|SND_LOOP);
+        //sndPlaySound("rain.wav",SND_ASYNC|SND_LOOP);
         }
 
         //sndPlaySound("cars.wav",SND_ASYNC|SND_LOOP);
@@ -2337,9 +2354,9 @@ case 'd':
         upsun(0);
         positionmoon=0;
         if(!rainday){
-        sndPlaySound("cars.wav",SND_ASYNC|SND_LOOP);
+        //sndPlaySound("cars.wav",SND_ASYNC|SND_LOOP);
         }else {
-        sndPlaySound("rain.wav",SND_ASYNC|SND_LOOP);
+        //sndPlaySound("rain.wav",SND_ASYNC|SND_LOOP);
         }
         //sndPlaySound("train.wav",SND_ASYNC|SND_LOOP);
         break;
@@ -2383,7 +2400,7 @@ int main(int argc, char** argv) {
    glutTimerFunc(1000, update1, 0);
    glutTimerFunc(100, updaterocket, 0);
    glutTimerFunc(100, upsun, 0);
-   sndPlaySound("cars.wav",SND_ASYNC|SND_LOOP);
+   //sndPlaySound("cars.wav",SND_ASYNC|SND_LOOP);
    //sndPlaySound("train.wav",SND_ASYNC|SND_LOOP);
   //glutTimerFunc(100, Rain, 0);
    glutMainLoop();
